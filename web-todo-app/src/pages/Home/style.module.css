@@ -1,0 +1,46 @@
+.backgroundHome{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/3136771.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+}
+
+.modalLogin{
+    margin: auto;
+    width: 25%;
+    min-height: 60vh;
+    background-color: #F0F0F5;
+    padding: 40px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modalLogin p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5em;
+    margin: 100px ;
+}
+
+.buttonLogin{
+    color: #226E1E;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 15px;
+}
+
+.buttonLogin a{
+    color: #226E1E;
+    text-decoration: none;
+}
+
+.groupButton{
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}

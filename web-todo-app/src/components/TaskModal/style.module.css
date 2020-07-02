@@ -1,0 +1,46 @@
+.container {
+    width: 500px;
+    min-width: 320px;
+    background-color: #F0F0F5;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerHeader{
+    text-align: center;
+    width: 100%;
+    height: 60px;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerStatus{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.groupIcon{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon{
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1000px){
+    .container {
+        margin: 40px;
+    }
+}
