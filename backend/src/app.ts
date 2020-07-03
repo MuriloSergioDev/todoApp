@@ -1,9 +1,10 @@
-const express = require('express');
+require('dotenv').config();
+import express from 'express';
+import routes from './routes';
+
 const app = express();
 
-// respond with "hello world" when a GET request is made to the homepage
-app.get('/', function(req, res) {
-  res.send('hello world');
-});
+app.use(express.json());
+app.use(routes);  
 
 export default app;
