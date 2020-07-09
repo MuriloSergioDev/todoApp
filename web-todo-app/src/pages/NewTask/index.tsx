@@ -1,29 +1,28 @@
 import React from 'react';
-
-
-import stylesTask from '../Task/style.module.css';
+import NewTaskModal from '../../components/NewTaskModal';
 import Menu from '../../components/Menu';
 import ActionButton from '../../components/ActionButton';
+import styles from './style.module.css';
 import { useHistory } from 'react-router-dom';
-import TaskDetailModal from '../../components/TaskDetailModal';
 
-const Detail: React.FC = () => {
-
+const NewTask: React.FC = () => {
     const history = useHistory();
 
-    function handleBack(){
+    function handleBack() {
         history.push('/');
     }
 
     return (
         <div>
             <Menu />
-            <div className={stylesTask.container}>
+            <div className={styles.container}>
                 <ActionButton action='Back' onClick={handleBack}></ActionButton>
-                <TaskDetailModal/>
+                <div className={styles.containerTasks}>
+                    <NewTaskModal />
+                </div>
             </div>
-        </div>
+        </div >
     );
 }
 
-export default Detail;
+export default NewTask;

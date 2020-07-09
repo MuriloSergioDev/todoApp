@@ -1,7 +1,9 @@
 import express from 'express';
-import { index, create, removeById, updateById } from '../controllers/TaskController';
+import { index, create, removeById, updateById, searchById } from '../controllers/TaskController';
 
 const router = express.Router();
+
+router.get('/task/:id', searchById);
 
 router.get('/tasks', index);
 

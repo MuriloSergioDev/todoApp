@@ -1,24 +1,28 @@
 import React from 'react';
 
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import {RootState} from '../../reducers/root.reducer'; 
+import { RootState } from '../../reducers/root.reducer';
 
-const PrivateRoute: React.FC = ({ children, ...rest}) => {
+interface Props extends RouteProps{
+    path : string
+}
+
+const PrivateRoute: React.FC<Props> = ({ children, path }) => {
 
     const auth = useSelector((state: RootState) => state.auth);
 
     return (
         <Route
-            {...rest}
+            path={path}
             render={({ location }) =>
                 auth.loggedIn ? (
                     children
                 ) : (
                         <Redirect
                             to={{
-                                pathname: "/",
+                                pathname: "/login",
                                 state: { from: location }
                             }}
                         />

@@ -1,22 +1,32 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from './pages/Home';
+import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Task from './pages/Task';
 import Detail from './pages/Detail';
+import NewTask from './pages/NewTask';
+import PrivateRoute, { } from './components/PrivateRoute';
 
 const src: React.FC = () => {
-    return (
-      <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/task" component={Task} />
-            <Route exact path="/detail" component={Detail} />
-            <Redirect from="*" to="/" />
-        </Switch>
-      </BrowserRouter>
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route  path="/login" component={SignIn} />
+        <Route  path="/signup" component={SignUp} />
+        {/* <Route  path="/detail" component={Detail} /> */}
+        <PrivateRoute exact path="/">
+          <Task/>
+        </PrivateRoute>
+        <PrivateRoute path="/detail/:id">
+          <Detail/>
+        </PrivateRoute>
+        <PrivateRoute path="/new-task">
+          <NewTask/>
+        </PrivateRoute>
+        <Redirect from="*" to="/" />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

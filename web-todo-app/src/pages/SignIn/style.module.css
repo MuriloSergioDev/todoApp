@@ -11,10 +11,10 @@
 
 .modalLogin{
     margin: auto;
-    width: 25%;
-    min-height: 60vh;
+    width: 100%;
+    min-height: 50vh;
     background-color: #F0F0F5;
-    padding: 40px 100px;
+    padding: 40px ;
     display: flex;
     flex-direction: column;
 }
@@ -23,7 +23,7 @@
     text-align: center;
     font-weight: bold;
     font-size: 2.5em;
-    margin: 100px ;
+    margin: 50px 0;
 }
 
 .buttonLogin{
@@ -43,4 +43,24 @@
     margin-top: auto;
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (min-width: 1000px){
+    .modalLogin{
+        width: 50%;
+        min-height: 60vh;
+    }
+}
+@media screen and (min-width: 2010px){
+    .modalLogin{
+        width: 30%;
+        min-height: 60vh;
+    }
+
+    .modalLogin p{
+        text-align: center;
+        font-weight: bold;
+        font-size: 2.5em;
+        margin: 100px;
+    }
 }

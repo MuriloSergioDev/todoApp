@@ -41,6 +41,9 @@ export async function login(req: Request, res: Response): Promise<Response> {
             return docs;
         });
 
+        const username = user[0].username;
+        const idUser = user[0].id;
+
         if (user[0] == null) {
             return res.status(404).send('Cannot find user');
         }
@@ -49,7 +52,7 @@ export async function login(req: Request, res: Response): Promise<Response> {
 
         if (checkPassword) {
             const token = jwt.sign({ id: user[0]._id }, secret, { expiresIn: '1h' });
-            return res.json({ token });
+            return res.json({ token, username, idUser });
         } else {
             return res.status(403).send('Incorrect password')
         }

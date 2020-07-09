@@ -1,0 +1,53 @@
+.container {
+    margin-top: 40px;
+    width: 100%;
+    min-height: 50vh;
+    background-color: #F0F0F5;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.containerHeader {
+    background-color: green;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.containerInput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.icon{
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 430px){
+    .container{
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1530px){
+    .container{
+        width: 80%;
+        text-align: center;
+        justify-content: start;
+    }
+
+    .containerInput{
+        width: 75%;
+    }
+}
