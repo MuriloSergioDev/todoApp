@@ -5,7 +5,7 @@ import stylesSignIn from '../../pages/SignIn/style.module.css'
 import { Link, useHistory } from 'react-router-dom';
 import { userService } from '../../services/user.service'
 import { useDispatch } from 'react-redux';
-import {actions as authActions} from '../../reducers/auth.reducer'
+import { actions as authActions } from '../../reducers/auth.reducer'
 interface User {
     username: string,
     password: string
@@ -19,40 +19,44 @@ const FormSignIn: React.FC = () => {
     });
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const [isWrongEntry, setIsWrongEntry] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     async function handleUserLogin(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(user);
         userService.login(user)
-        .then(
-            response => {
-                console.log(response);
-                if (response.status === 200) {
-                    //console.log('email and password are correct');
-                    dispatch(authActions.sucessLogin());
-                    history.push('/');
-                } else {
-                    console.log('email or password incorrect');
-                    //setErrorLogin(<span className="error-login">Email or password incorrect</span>);
-                    dispatch(authActions.failLogin());
+            .then(
+                response => {
+                    if (response.status === 200) {
+                        setIsWrongEntry(false);
+                        setErrorMessage('');
+                        dispatch(authActions.sucessLogin());
+                        history.push('/');
+                    } else {
+                        console.log('email or password incorrect');
+                        setIsWrongEntry(true);
+                        setErrorMessage('Email or password incorrect')
+                        dispatch(authActions.failLogin());
+                    }
+                },
+                error => {
+                    console.log(error);
                 }
-            },
-            error =>{
-                console.log(error);
-            }
-        )
+            )
     }
 
     return (
         <form action="" onSubmit={(e: FormEvent<HTMLFormElement>) => handleUserLogin(e)}>
-            <UserInput type={'text'} placeholder="username" onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            {isWrongEntry ?
+                <div className={stylesSignIn.modalError}>{errorMessage}</div>
+                : null}
+            <UserInput isRed={isWrongEntry} type={'text'} placeholder="username" onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 const value = event.target.value;
                 setUser(prevState => { return { ...prevState, username: value } });
             }}>
             </UserInput>
 
-            <UserInput type={'password'} placeholder="password" onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            <UserInput isRed={isWrongEntry} type={'password'} placeholder="password" onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 const value = event.target.value;
                 setUser(prevState => { return { ...prevState, password: value } });
             }}>

@@ -1,6 +1,6 @@
 .container {
     width: 500px;
-    min-width: 320px;
+    min-width: 180px;
     background-color: #F0F0F5;
     margin: 20px 0;
     display: flex;

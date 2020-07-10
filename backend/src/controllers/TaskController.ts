@@ -11,6 +11,13 @@ export async function index(req: Request, res: Response): Promise<Response> {
 }
 
 export async function create(req: Request, res: Response): Promise<Response> {
+
+    let task = new Task(req.body);
+    let validationErrors = task.validateSync();
+
+    if (validationErrors)
+        return res.status(200).json(validationErrors);
+        
     try {
         const newTask = req.body;
         const createTask = await Task.create(newTask);
@@ -36,7 +43,7 @@ export async function removeById(req: Request, res: Response): Promise<Response>
 export async function updateById(req: Request, res: Response): Promise<Response> {
     try {
         const result = await Task.updateOne({ _id: req.params.id }, req.body);
-        
+
         if (result.nModified == 0)
             return res.status(404).json(result);
 
@@ -49,7 +56,7 @@ export async function updateById(req: Request, res: Response): Promise<Response>
 export async function searchById(req: Request, res: Response): Promise<Response> {
     try {
         const result = await Task.findById(req.params.id);
-        
+
         if (result === null)
             return res.status(404).json(result);
 

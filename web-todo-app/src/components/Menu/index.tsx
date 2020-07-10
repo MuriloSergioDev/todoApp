@@ -4,6 +4,7 @@ import styles from './style.module.css';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {actions as authActions} from '../../reducers/auth.reducer';
+import { FaSignOutAlt } from 'react-icons/fa';
 const Menu: React.FC = () => {
 
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const Menu: React.FC = () => {
   return (
     <div className={styles.menu}>
       <p>Welcome {localStorage.getItem('username')}</p>
-      <button className={styles.buttonLogout} onClick={handleUserLogout}>Log Out</button>
+      
+      
+      <button className={styles.buttonLogout} onClick={handleUserLogout}><p>Log Out</p> <FaSignOutAlt className={styles.icon}></FaSignOutAlt></button>
     </div>
   );
 }

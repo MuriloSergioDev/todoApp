@@ -19,7 +19,8 @@ interface TaskInterface {
 
 const TaskDetailModal: React.FC = () => {
 
-    const [task, setTask] = useState<TaskInterface>({});
+    const [task, setTask] = useState<TaskInterface>({ title:'', status:'', deadline:'', description:'', checklist:[]});
+    // { title:'', status:'', deadline:'', description:'', checklist:[]}
     const history = useHistory();
 
     const { id } = useParams();

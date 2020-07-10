@@ -7,6 +7,7 @@
     align-items: center;
     font-size: 2em;
     padding: 10px;
+    text-align: center;
 }
 
 .buttonLogout{
@@ -14,7 +15,17 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon{
+    width: 30px;
+    height: 30px;
     margin: 15px;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 430px){

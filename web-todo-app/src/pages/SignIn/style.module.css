@@ -45,10 +45,28 @@
     flex-direction: column;
 }
 
+ul{
+    display: flex;
+    flex-direction: column;
+}
+.modalError{
+    background-color: lightcoral;
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
 @media screen and (min-width: 1000px){
     .modalLogin{
         width: 50%;
         min-height: 60vh;
+    }
+
+    .modalError{
+        min-height: 40px;
+        font-size: 1.5em;
     }
 }
 @media screen and (min-width: 2010px){

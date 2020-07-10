@@ -5,10 +5,11 @@ interface Props {
     type: string,
     placeholder: string,
     onChange: Function,
-    initialValue?: string
+    initialValue?: string,
+    isRed?: boolean   
 }
 
-const UserInput: React.FC<Props> = ({ type, placeholder, onChange, initialValue }) => {
+const UserInput: React.FC<Props> = ({ type, placeholder, onChange, initialValue, isRed }) => {
 
     let input = <div></div>;
 
@@ -33,8 +34,21 @@ const UserInput: React.FC<Props> = ({ type, placeholder, onChange, initialValue 
             input =
                 <select id="status" className={styles.select} value={initialValue} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     onChange(event);
-                }}> 
-                    <option value="" disabled selected></option>
+                }}>
+                    <option value="" disabled >Choose Status</option>
+                    <option value="Undone">Undone</option>
+                    <option value="Done">Done</option>
+                    <option value="Doing" >Doing</option>
+                    <option value="Paused">Paused</option>
+                </select>
+            break;
+
+        case 'new list':
+            input =
+                <select id="status" className={styles.select} defaultValue={initialValue} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                    onChange(event);
+                }}>
+                    <option value="" disabled >Choose Status</option>
                     <option value="Undone">Undone</option>
                     <option value="Done">Done</option>
                     <option value="Doing" >Doing</option>
@@ -55,15 +69,8 @@ const UserInput: React.FC<Props> = ({ type, placeholder, onChange, initialValue 
     }
 
     return (
-        <div className={styles.fieldInput}>
-
+        <div className={ isRed ? styles.fieldInputError :styles.fieldInput}>
             {input}
-            {/* <input
-                type={type} className={styles.input} placeholder=" "
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    onChange(event);
-                }}
-            ></input> */}
             <label className={styles.fieldLabel}>{placeholder}</label>
             <span className={styles.fieldPlaceholder}>{placeholder}</span>
         </div>

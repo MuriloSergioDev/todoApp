@@ -1,5 +1,6 @@
 .groupButton {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     min-height: 50px;
     background-color: rgba(153, 153, 153, 0.4);
     display: flex;

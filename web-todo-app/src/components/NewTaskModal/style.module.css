@@ -34,6 +34,16 @@
     cursor: pointer;
 }
 
+.modalError{
+    background-color: lightcoral;
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
 @media screen and (min-width: 430px){
     .container{
         width: 80%;

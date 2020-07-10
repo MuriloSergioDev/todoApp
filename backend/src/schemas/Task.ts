@@ -10,9 +10,18 @@ interface TaskInterface extends Document{
 }
 
 const TaskSchema = new Schema({
-    title: String,
-    status: String,
-    deadline: String,
+    title: {
+        type :String,
+        required : [true, 'Title cannot be null']
+    },
+    status: {
+        type :String,
+        required : [true, 'Status cannot be null']
+    },
+    deadline: {
+        type :String,
+        required : [true, 'Deadline cannot be null']
+    },
     description: String,
     checklist: Array
 },{

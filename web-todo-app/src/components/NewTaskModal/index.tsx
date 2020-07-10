@@ -16,23 +16,41 @@ interface NewTaskInterface {
 const NewTaskModal: React.FC = () => {
 
     const [newTask, setNewTask] = useState<NewTaskInterface>({});
+    const [isWrongEntry, setIsWrongEntry] = useState(false);
+    const [errorMessages, setErrorMessages] = useState<string[]>([]);
     const history = useHistory();
 
     function handleCreateNewTask(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log(newTask);
-
+        const newErrors: string[] = [];
         userService.createNewTask(newTask)
             .then(
-                response=>{
+                response => {
+                    if (response.data.errors) {
+                        if (response.data.errors.title && response.data.errors.title.properties.message)
+                            newErrors?.push(response.data.errors.title.properties.message);
+
+                        if (response.data.errors.status && response.data.errors.status.properties.message)
+                            newErrors?.push(response.data.errors.status.properties.message);
+
+                        if (response.data.errors.deadline && response.data.errors.deadline.properties.message)
+                            newErrors?.push(response.data.errors.deadline.properties.message);
+
+                        setErrorMessages(newErrors);
+                        setIsWrongEntry(true);
+                    } else {
+                        setErrorMessages(newErrors);
+                        setIsWrongEntry(false);
+                    }
+
                     if (response.status === 201) {
                         console.log('Created Task');
+                        history.push('/');
                     } else {
                         console.log('Fail in creating task');
                     }
-                    history.push('/');
                 },
-                error=>{
+                error => {
                     console.log('requisition failed');
                 }
             )
@@ -43,17 +61,19 @@ const NewTaskModal: React.FC = () => {
             <div className={styles.containerHeader}>
                 <h1>New task</h1>
             </div>
-
+            {errorMessages?.map((message, index) => {
+                return <div className={styles.modalError} key={index}>{message}</div>
+            })}
             <form className={styles.containerInput} onSubmit={(e: FormEvent<HTMLFormElement>) => handleCreateNewTask(e)}>
-                <UserInput type="text" placeholder="title" onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                <UserInput isRed={isWrongEntry} type="text" placeholder="title" onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     const value = event.target.value;
                     setNewTask(prevState => { return { ...prevState, title: value } });
                 }} />
-                <UserInput type="list" placeholder="status" onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                <UserInput isRed={isWrongEntry} type="new list" placeholder="status" initialValue={""} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     const value = event.target.value;
                     setNewTask(prevState => { return { ...prevState, status: value } });
                 }} />
-                <UserInput type="date" placeholder="deadline" onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                <UserInput isRed={isWrongEntry} type="date" placeholder="deadline" onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     const value = event.target.value;
                     setNewTask(prevState => { return { ...prevState, deadline: value } });
                 }} />
@@ -62,7 +82,7 @@ const NewTaskModal: React.FC = () => {
                     setNewTask(prevState => { return { ...prevState, description: value } });
                 }} />
 
-                <ActionButton action='Comfirm' onClick={()=>{}}></ActionButton>
+                <ActionButton action='Comfirm' onClick={() => { }}></ActionButton>
             </form>
         </div>
     );

@@ -55,9 +55,8 @@ async function register(user: user) {
 
     try {
         const response = await api.post(`user/signUp`, data);
-
+        
         return response;
-        //console.log(response);
     } catch (error) {
         return error;
         //console.warn(error);
