@@ -5,6 +5,7 @@ interface TaskInterface extends Document{
     title: string,
     status: string,
     deadline: string,
+    userId: string,
     description: string,
     checklist: Array<string>
 }
@@ -12,17 +13,26 @@ interface TaskInterface extends Document{
 const TaskSchema = new Schema({
     title: {
         type :String,
+        maxlength:[21, 'Title cannot have more than 21 characteres'],
         required : [true, 'Title cannot be null']
     },
     status: {
         type :String,
-        required : [true, 'Status cannot be null']
+        required : [true, 'Status cannot be null'],
+        enum: ['Undone', 'Done', 'Doing', 'Paused']
     },
     deadline: {
         type :String,
         required : [true, 'Deadline cannot be null']
     },
-    description: String,
+    userId: {
+        type :String,
+        required : [true, 'UserId cannot be null']
+    },
+    description: {
+        type :String,
+        required : [true, 'description cannot be null']
+    },
     checklist: Array
 },{
     timestamps: true

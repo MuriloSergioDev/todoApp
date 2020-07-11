@@ -3,7 +3,6 @@ import { Request, Response } from 'express'
 import User from '../schemas/User';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import assert from 'assert';
 
 const secret = <string>process.env.ACESS_TOKEN_SECRET;
 
@@ -26,7 +25,7 @@ export async function create(req: Request, res: Response): Promise<Response> {
     }
 
     let user = new User({
-        username: req.body.username,
+        username,
         password: req.body.password
     });
 
@@ -36,9 +35,23 @@ export async function create(req: Request, res: Response): Promise<Response> {
 
     try {
         const createUser = await User.create(newUser);
+
         return res.status(201).json(createUser);
 
     } catch (error) {
+        if (error.code == 11000) {
+            const err = {
+                "errors": {
+                    "username": {
+                        "properties": {
+                            "message": "This username already exists"
+                        }
+                    }
+                }
+            }
+            return res.status(200).json(err);
+        }
+
         return res.status(500).json(error);
     }
 

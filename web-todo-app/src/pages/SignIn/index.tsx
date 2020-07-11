@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     let history = useHistory();
 
     useEffect(() => {
-        if (localStorage.getItem('token') && localStorage.getItem('idUser')) {
+        if (localStorage.getItem('token') && localStorage.getItem('userId')) {
             const token = localStorage.getItem('token') || '{}';
             //console.log(token);
 
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
                             dispatch(authActions.setLogout());
                         }
                         if (response.data && response.data.id) {
-                            if (response.data.id === localStorage.getItem('idUser')) {
+                            if (response.data.id === localStorage.getItem('userId')) {
                                 dispatch(authActions.refreshLogin());
                                 console.log('Voce foi relogado');
 

@@ -3,7 +3,8 @@ import Task from '../schemas/Task';
 
 export async function index(req: Request, res: Response): Promise<Response> {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ userId: req.params.userId});
+
         return res.status(200).json(tasks);
     } catch (error) {
         return res.status(500).json(error);

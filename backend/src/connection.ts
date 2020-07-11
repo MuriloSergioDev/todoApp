@@ -16,6 +16,7 @@ import mongoose from 'mongoose';
 // };
 
 const options = {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     socketTimeoutMS: 5000

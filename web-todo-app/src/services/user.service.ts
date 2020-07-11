@@ -35,7 +35,7 @@ async function login(user: user) {
         if (response.status === 200) {
             console.log('Voce foi logado');
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('idUser', response.data.idUser);
+            localStorage.setItem('userId', response.data.idUser);
             localStorage.setItem('username', response.data.username);
             return response;
         }
@@ -76,7 +76,7 @@ async function verifyToken(token: string) {
 
 async function createNewTask(task: NewTaskInterface) {
     try {
-        const response = await api.post('task/newTask', task);
+        const response = await api.post(`task/newTask`, task);
 
         return response;
     } catch (error) {

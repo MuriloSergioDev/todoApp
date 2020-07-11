@@ -3,7 +3,7 @@ import styles from './style.module.css';
 
 interface Props {
     type: string,
-    placeholder: string,
+    placeholder?: string,
     onChange: Function,
     initialValue?: string,
     isRed?: boolean   

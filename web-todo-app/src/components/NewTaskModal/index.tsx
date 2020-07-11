@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, FormEvent } from 'react';
+import React, { ChangeEvent, useState, FormEvent, useEffect } from 'react';
 import styles from './style.module.css';
 import UserInput from '../UserInput';
 import ActionButton from '../ActionButton';
@@ -9,6 +9,7 @@ interface NewTaskInterface {
     title?: string,
     status?: string,
     deadline?: string,
+    userId?: string,
     description?: string,
     checklist?: Array<string>
 }
@@ -19,6 +20,10 @@ const NewTaskModal: React.FC = () => {
     const [isWrongEntry, setIsWrongEntry] = useState(false);
     const [errorMessages, setErrorMessages] = useState<string[]>([]);
     const history = useHistory();
+
+    useEffect(() => {
+        setNewTask(prevState => { return { ...prevState, userId: localStorage.getItem('userId') || "" } })
+    }, [])
 
     function handleCreateNewTask(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -35,6 +40,9 @@ const NewTaskModal: React.FC = () => {
 
                         if (response.data.errors.deadline && response.data.errors.deadline.properties.message)
                             newErrors?.push(response.data.errors.deadline.properties.message);
+
+                        if (response.data.errors.description && response.data.errors.description.properties.message)
+                            newErrors?.push(response.data.errors.description.properties.message);
 
                         setErrorMessages(newErrors);
                         setIsWrongEntry(true);
@@ -69,7 +77,7 @@ const NewTaskModal: React.FC = () => {
                     const value = event.target.value;
                     setNewTask(prevState => { return { ...prevState, title: value } });
                 }} />
-                <UserInput isRed={isWrongEntry} type="new list" placeholder="status" initialValue={""} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                <UserInput isRed={isWrongEntry} type="new list" initialValue="" onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                     const value = event.target.value;
                     setNewTask(prevState => { return { ...prevState, status: value } });
                 }} />

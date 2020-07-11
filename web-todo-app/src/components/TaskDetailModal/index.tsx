@@ -115,7 +115,7 @@ const TaskDetailModal: React.FC = () => {
                 <div className={styles.containerStatus}>
                     <h2>Status</h2>
                     {/* <h2>{task?.status}</h2> */}
-                    <UserInput type="list" placeholder="status" initialValue={task.status} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                    <UserInput type="list" initialValue={task.status} onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                         const value = event.target.value;
                         setTask(prevState => { return { ...prevState, status: value } });
                     }} />
@@ -124,7 +124,7 @@ const TaskDetailModal: React.FC = () => {
                 <div className={styles.groupDescription}>
                     <h2>Title</h2>
                     {/* <p>{task?.deadline}</p> */}
-                    <UserInput type="text" placeholder="Title" initialValue={task.title} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    <UserInput type="text" initialValue={task.title} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                         const value = event.target.value;
                         setTask(prevState => { return { ...prevState, title: value } });
                     }} />
@@ -133,7 +133,7 @@ const TaskDetailModal: React.FC = () => {
                 <div className={styles.groupDescription}>
                     <h2>Description</h2>
                     {/* <p>{task?.description}</p> */}
-                    <UserInput type="text" placeholder="Description" initialValue={task.description} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    <UserInput type="text" initialValue={task.description} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                         const value = event.target.value;
                         setTask(prevState => { return { ...prevState, description: value } });
                     }} />
@@ -142,7 +142,7 @@ const TaskDetailModal: React.FC = () => {
                 <div className={styles.groupDescription}>
                     <h2>Deadline</h2>
                     {/* <p>{task?.deadline}</p> */}
-                    <UserInput type="date" placeholder="Deadline" initialValue={task.deadline} onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    <UserInput type="date" initialValue={task.deadline} onChange={(event: ChangeEvent<HTMLInputElement>) => {
                         const value = event.target.value;
                         setTask(prevState => { return { ...prevState, deadline: value } });
                     }} />

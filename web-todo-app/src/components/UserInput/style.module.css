@@ -93,11 +93,3 @@
     border: none;
 }
 
-
-.fieldInput .select:focus + label,
-.fieldInput .select:not(:placeholder-shown) + label{
-  font-size: 1em;
-  margin-top: 0;
-  color: gray;
-}
-

@@ -30,7 +30,7 @@ const Task: React.FC = () => {
         const CancelToken = axios.CancelToken;
         const source = CancelToken.source();
         try {
-            api.get(`task/tasks`, {
+            api.get(`task/tasks/${localStorage.getItem('userId')}`, {
                 cancelToken: source.token
             }).then(
                 response => {

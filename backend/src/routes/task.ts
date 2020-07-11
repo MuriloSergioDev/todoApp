@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/task/:id', searchById);
 
-router.get('/tasks', index);
+router.get('/tasks/:userId', index);
 
 router.put('/updateTask/:id', updateById);
 
