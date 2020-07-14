@@ -1,6 +1,8 @@
 # TodoApp
 A todo webapp with React
 
+![todoAppVideo](https://user-images.githubusercontent.com/62616777/87475684-9544d200-c5fb-11ea-8eb8-2db875747008.gif)
+
 ## Features
 - Authorization with jwt
 - Database integration with MongoDB 
